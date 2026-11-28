@@ -1,3 +1,13 @@
+---
+id: DOC-003
+title: Security Vulnerability Reporting Guide
+status: active
+superseded_by:
+last_updated: 2026-11-28
+related_code:
+  - .github/SECURITY.md
+---
+
 # Security Vulnerability Reporting Guide
 
 ## Supported Versions
