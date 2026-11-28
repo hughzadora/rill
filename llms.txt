@@ -1,0 +1,43 @@
+# Rill Template
+
+`rill-template` is a GitHub repository template for agents building new TypeScript projects with GitHub Spec Kit and Oh My Pi (OMP). It starts with an empty `packages/` workspace.
+
+## Core files
+
+- `package.json` — Bun + Turborepo workspace root manifest
+- `mise.toml` — Toolchain and task definitions (bun, node, uv, specify-cli, gitleaks, etc.)
+- `turbo.json` — Turborepo pipeline configuration
+- `tsconfig.json` — Root TypeScript configuration
+- `AGENTS.md` — AI agent operating manual
+- `README.md` — Project entry and usage guide
+
+## Key directories
+
+- `packages/` — Workspace packages (empty by default)
+- `.github/` — CI workflows, issue templates, security policy, dependabot
+- `.changeset/` — Changesets version management
+- `.devcontainer/` — Cloud/dev container environment
+- `.specify/` — GitHub Spec Kit configuration
+- `.agents/skills/` — Agent skills
+- `specs/` — Feature specifications and acceptance records
+- `tooling/` — Verification and workflow scripts
+
+## Commands
+
+- `mise run verify` — Full local verification gate
+- `mise run verify:fast` — Fast verification gate (CI default)
+- `mise run qualify` — Full gate plus mutation tests (pre-release)
+- `mise run fmt` — Format repository-owned files
+- `mise run docs:check` — Validate document metadata schema
+- `mise run changeset` — Create a changeset for version bump
+
+## Tech stack
+
+- Bun 1.4.5, Node 24.22.3
+- TypeScript strict mode
+- Turborepo monorepo
+- OMP (Oh My Pi) agent host
+- GitHub Spec Kit SDD workflow
+- Zod for schema validation
+- tsdown for builds
+- fast-check for property-based testing

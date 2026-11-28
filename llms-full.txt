@@ -1,0 +1,105 @@
+# Rill Template — Complete LLM Knowledge Index
+
+## Overview
+
+`rill-template` is a GitHub repository template for agents building new TypeScript projects with [GitHub Spec Kit](https://github.com/github/spec-kit) and [Oh My Pi (OMP)](https://github.com/can1357/oh-my-pi). It starts with an empty `packages/` workspace.
+
+Generated projects remain independently deliverable without the optional Rill workflow plugin. The plugin recognizes this template through `.omp/rill-workflow` and provides automatic triggers in enabled projects.
+
+## Root Files
+
+| File | Purpose |
+|------|---------|
+| `package.json` | Bun + Turborepo workspace root manifest. Scripts: docs:check, build, test, typecheck, lint, format:check, commitlint, fmt, arch:check, api:check, deadcode:check, rules:check, mutation. |
+| `mise.toml` | Toolchain (bun 1.4.5, node 24.22.3, uv 0.13.10, specify-cli 1.4.5, gitleaks, actionlint, shellcheck, zizmor, osv-scanner) and tasks (setup, prepare, fmt, docs:check, verify:fast, verify, qualify, deps, hooks, changeset, version). |
+| `turbo.json` | Turborepo pipeline configuration for workspace tasks. |
+| `tsconfig.json` | Root TypeScript configuration with strict mode. |
+| `AGENTS.md` | AI agent operating manual: scope, implement/verify, settle/report, regression evidence. |
+| `README.md` | Project entry: start a project, submit a change, document metadata, add a package, review/version/release, local quality checks. |
+| `LICENSE` | MIT License. |
+| `llms.txt` | LLM-friendly project knowledge index (this file's summary). |
+| `llms-full.txt` | Complete LLM knowledge index (this file). |
+| `bun.lock` | Bun lockfile. |
+| `.gitignore` | Git ignore rules. |
+| `.editorconfig` | Editor configuration. |
+| `.gitattributes` | Git attributes. |
+
+## Directories
+
+### `packages/`
+Workspace packages directory, empty by default. Scaffold packages under `packages/` with maintained tools. Each package needs `build`, `typecheck`, `test` scripts and `tsdown` for builds.
+
+### `.github/`
+- `workflows/ci.yml` — Verify gate (fast on PR/push, full on workflow_dispatch).
+- `workflows/release.yml` — GitHub Release generation.
+- `workflows/publish.yml` — npm publish.
+- `workflows/version.yml` — Changeset version PR.
+- `dependabot.yml` — Dependency auto-updates.
+- `pull_request_template.md` — PR template.
+- `SECURITY.md` — Security vulnerability reporting guidance.
+- `ISSUE_TEMPLATE/` — Structured YAML issue forms.
+
+### `.changeset/`
+Changesets version management with `@changesets/cli@3.1.0`. Config uses `@changesets/config@4.1.0` schema, baseBranch `main`, changelog `@changesets/cli/changelog`.
+
+### `.devcontainer/`
+Cloud/dev container environment definition (`devcontainer.json`).
+
+### `.specify/`
+GitHub Spec Kit configuration: extensions, workflows, templates, integrations, presets.
+
+### `.agents/skills/`
+Agent skills directory.
+
+### `specs/`
+Feature specifications and acceptance records. `001-delivery-governance/` is the current feature directory.
+
+### `tooling/`
+Verification and workflow scripts: `document-metadata.mts` (document metadata schema validation), `workflow-inputs.mts` (delivery evidence validation).
+
+## Tech Stack
+
+- **Runtime**: Bun 1.4.5, Node 24.22.3
+- **Language**: TypeScript strict mode
+- **Monorepo**: Turborepo
+- **Agent Host**: OMP (Oh My Pi)
+- **SDD Workflow**: GitHub Spec Kit
+- **Schema**: Zod for runtime validation
+- **Build**: tsdown
+- **Testing**: Bun test, fast-check for property-based testing, Stryker for mutation testing
+- **Lint**: oxlint, oxfmt
+- **Format**: dprint (Markdown, JSON, YAML, TOML), oxfmt (JS/TS)
+- **Security**: gitleaks, actionlint, zizmor, osv-scanner
+- **Version**: @changesets/cli@3.1.0
+
+## Key Commands
+
+| Command | Purpose |
+|---------|---------|
+| `mise install --locked` | Install locked toolchain |
+| `mise run prepare` | Prepare after bootstrap (installs frozen dependencies, warms formatter cache) |
+| `mise run verify` | Full local verification gate |
+| `mise run verify:fast` | Fast verification gate (CI default on PR/push) |
+| `mise run qualify` | Full gate plus mutation tests (pre-release) |
+| `mise run fmt` | Format repository-owned files |
+| `mise run docs:check` | Validate document metadata YAML front matter |
+| `mise run changeset` | Create a changeset |
+| `mise run version` | Bump versions via changeset |
+| `mise run deps` | Vulnerability scan and dependency update listing |
+| `mise run hooks` | Install lefthook git hooks |
+
+## Document Metadata
+
+Rill-authored Markdown files use YAML front matter with: `id` (unique stable), `title`, `status` (draft|active|completed|deprecated|superseded), `superseded_by`, `last_updated` (ISO date), `related_code` (file paths). Run `mise run docs:check` to validate.
+
+## Conventional Commits
+
+Use `Delivery:`, `Spec:`, or `Maintenance:` prefixes. PR titles are validated by commitlint with conventional commit format.
+
+## Release Process
+
+1. Create changeset: `mise run changeset`
+2. Commit changeset with the change
+3. Run version: `mise run version` (creates version PR)
+4. Review generated versions, changelogs, lockfile
+5. Merge version PR to trigger GitHub Release

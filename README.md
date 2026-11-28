@@ -9,9 +9,31 @@ related_code:
   - package.json
 ---
 
+<div align="center">
+
 # Rill Template
 
-`rill-template` is a GitHub repository template for agents building new TypeScript projects with [GitHub Spec Kit](https://github.com/github/spec-kit) and Oh My Pi (OMP). It starts with an empty `packages/` workspace.
+**GitHub repository template for agents building TypeScript projects with Spec Kit and OMP.**
+
+<picture>
+  <source
+    media="(prefers-color-scheme: dark)"
+    src=".github/assets/logo-dark.svg"
+  >
+  <source
+    media="(prefers-color-scheme: light)"
+    src=".github/assets/logo-light.svg"
+  >
+  <img alt="Rill Logo" src=".github/assets/logo-light.svg" width="200">
+</picture>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Bun](https://img.shields.io/badge/Bun-1.4.5-%23000000?style=flat-square&logo=bun)](https://bun.sh/)
+[![OMP](https://img.shields.io/badge/OMP-oh--my--pi-%234a90e2?style=flat-square)](https://github.com/can1357/oh-my-pi)
+[![Spec Kit](https://img.shields.io/badge/Spec%20Kit-GitHub-%2324292f?style=flat-square)](https://github.com/github/spec-kit)
+[![mise](https://img.shields.io/badge/mise-toolchain-%233b82f6?style=flat-square)](https://mise.jdx.dev/)
+
+</div>
 
 ## Start a project
 
@@ -27,6 +49,20 @@ Use `Delivery: <verification summary>` for direct delivery, `Spec: specs/<featur
 For independent enforcement, use a contributor identity without administration or bypass permissions, and keep the owner's credentials outside agent sessions. Configure GitHub to require owner review, dismiss stale approvals, and require checks from a trusted source controlled outside the candidate branch. Each repository created from the template needs its own enforcement configuration.
 
 An optional Rill workflow plugin can recognize this template through `.omp/rill-workflow`. The project installs its tools, runs its Spec Kit workflow, and verifies changes using the commands above independently of the plugin.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[User creates repo from template] --> B[Install mise + OMP]
+    B --> C[Run mise install --locked]
+    C --> D[Run mise run prepare]
+    D --> E[Run mise run verify]
+    E --> F[GitHub Actions CI on PR/push]
+    F --> G[Spec Kit durable planning]
+    G --> H[Conventional Commits + Changesets]
+    H --> I[GitHub Release / npm publish]
+```
 
 ## Document metadata
 
