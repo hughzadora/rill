@@ -1,5 +1,5 @@
 ---
-id: DOC-006
+id: DOC-011
 title: Visual Assets Directory
 status: active
 superseded_by:
