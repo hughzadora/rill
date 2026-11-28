@@ -1,0 +1,54 @@
+name: Feature Request
+description: Suggest an idea for the template
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for `rill-template`? Please describe it below.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A clear and concise description of the feature.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: I'm always frustrated when [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like.
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or features you've considered.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this to you?
+      options:
+        - Low
+        - Medium
+        - High
+        - Critical
+      default: Medium
