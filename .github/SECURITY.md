@@ -1,22 +1,22 @@
-# 安全漏洞上报指引
+# Security Vulnerability Reporting Guide
 
-## 支持的版本
+## Supported Versions
 
-| 版本  | 支持状态 |
-| ----- | -------- |
-| 0.x.x | ✅ 支持  |
+| Version | Support Status |
+| ------- | -------------- |
+| 0.x.x   | ✅ Supported   |
 
-## 上报漏洞
+## Reporting a Vulnerability
 
-如果您发现安全漏洞，请通过 GitHub 私密漏洞上报（Private Vulnerability Reporting）提交，或发送邮件至仓库维护者。
+If you discover a security vulnerability, please submit it via GitHub Private Vulnerability Reporting, or email the repository maintainer.
 
-请勿在公开 Issue 中披露安全漏洞细节。
+Please do not disclose security vulnerability details in public Issues.
 
-## 上报应包含
+## Report Should Include
 
-- 漏洞类型和影响范围
-- 复现步骤
-- 可能的缓解方案
-- 您的联系方式（可选）
+- Vulnerability type and scope of impact
+- Steps to reproduce
+- Possible mitigation measures
+- Your contact information (optional)
 
-我们将在确认后尽快回复并协作修复。
+We will reply as soon as possible after confirmation and collaborate on the fix.
